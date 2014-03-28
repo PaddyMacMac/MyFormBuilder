@@ -1,0 +1,5 @@
+C:\MyFormBuilder\Trunk\myFormBuilder.DAL\bin\Debug\myFormBuilder.DAL.dll
+C:\MyFormBuilder\Trunk\myFormBuilder.DAL\bin\Debug\myFormBuilder.DAL.pdb
+C:\MyFormBuilder\Trunk\myFormBuilder.DAL\obj\Debug\myFormBuilder.DAL.dll
+C:\MyFormBuilder\Trunk\myFormBuilder.DAL\obj\Debug\myFormBuilder.DAL.pdb
+C:\MyFormBuilder\Trunk\myFormBuilder.DAL\obj\Debug\myFormBuilder.DAL.csprojResolveAssemblyReference.cache

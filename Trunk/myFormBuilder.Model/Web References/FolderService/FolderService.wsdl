@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.prometric.com/webservices/intelitest" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.prometric.com/webservices/intelitest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service for folder management.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.prometric.com/webservices/intelitest">
+      <s:element name="GetContentRootFolderId">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetContentRootFolderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContentRootFolderIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="user" type="tns:User" />
+      <s:complexType name="User">
+        <s:attribute name="currentContextId" type="s:string" />
+        <s:attribute name="userName" type="s:string" />
+        <s:attribute name="userId" type="s:string" />
+        <s:attribute name="authenticated" type="s:boolean" use="required" />
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="EditFolderNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folder" nillable="true" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Folder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FolderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FolderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FolderTypeId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FolderTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLocked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsHidden" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSystem" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcCreateDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcLockedDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcModifiedDateTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateUser" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifiedUser" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EditFolderNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EditFolderNodeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folder" nillable="true" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folder" nillable="true" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveFolderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folder" nillable="true" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFolderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLocationFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parentFolderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="deleteFolderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLocationFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteLocationFolderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folderType" type="tns:FolderType" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFolderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strParentFolderUUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="FolderType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Folder" />
+          <s:enumeration value="Roles" />
+          <s:enumeration value="Users" />
+          <s:enumeration value="Permissions" />
+          <s:enumeration value="Workflows" />
+          <s:enumeration value="ItemTypes" />
+          <s:enumeration value="ICSNode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateNewFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="folder" nillable="true" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadFolderAttributes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="folderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadFolderAttributesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadFolderAttributesResult" type="tns:ArrayOfFolderAttribute" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFolderAttribute">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FolderAttribute" nillable="true" type="tns:FolderAttribute" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FolderAttribute">
+        <s:attribute name="FolderAttributeId" type="s:string" />
+        <s:attribute name="FolderId" type="s:string" />
+        <s:attribute name="Attribute" type="s:string" />
+        <s:attribute name="Value" type="s:string" />
+        <s:attribute name="CreateUser" type="s:string" />
+        <s:attribute name="ModifiedUser" type="s:string" />
+      </s:complexType>
+      <s:element name="SaveFolderAttribute">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fa" type="tns:FolderAttribute" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFolderAttributeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveFolderAttributeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolderAttribute">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fa" type="tns:FolderAttribute" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolderAttributeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFolderAttributeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFolderElement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FolderElement" nillable="true" type="tns:FolderElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FolderElement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FolderElementId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FolderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcStartDatetime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcEndDatetime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcCreateDatetime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateUser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="utcModifiedDatetime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifiedUser" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveFolderElementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveFolderElementResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveFolderElement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sourceFolderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="targetFolderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="movingElementId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveFolderElementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MoveFolderElementResult" type="tns:FolderServiceResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FolderServiceResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatusMessage" type="s:string" />
+        </s:sequence>
+        <s:attribute name="SuccessStatus" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:element name="DeleteFolderElement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FolderElement" nillable="true" type="tns:FolderElement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFolderElementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFolderElementResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="folder" nillable="true" type="tns:Folder" />
+      <s:element name="int" type="s:int" />
+      <s:element name="ArrayOfFolderAttribute" nillable="true" type="tns:ArrayOfFolderAttribute" />
+      <s:element name="FolderServiceResult" nillable="true" type="tns:FolderServiceResult" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetContentRootFolderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContentRootFolderId" />
+  </wsdl:message>
+  <wsdl:message name="GetContentRootFolderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContentRootFolderIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContentRootFolderIduser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="EditFolderNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:EditFolderNode" />
+  </wsdl:message>
+  <wsdl:message name="EditFolderNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:EditFolderNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditFolderNodeuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadFolder" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveFolder" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFolder" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLocationFolder" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLocationFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewFolder" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadFolderAttributes" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadFolderAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderAttributeSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveFolderAttribute" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderAttributeSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveFolderAttributeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderAttributeuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderAttributeSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFolderAttribute" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderAttributeSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFolderAttributeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderAttributeuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderElementSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveFolderElement" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderElementSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveFolderElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFolderElementuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveFolderElement" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveFolderElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderElementSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFolderElement" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderElementSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFolderElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFolderElementuser">
+    <wsdl:part name="user" element="tns:user" />
+  </wsdl:message>
+  <wsdl:message name="GetContentRootFolderIdHttpGetIn" />
+  <wsdl:message name="GetContentRootFolderIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderHttpGetIn">
+    <wsdl:part name="folderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderHttpGetOut">
+    <wsdl:part name="Body" element="tns:folder" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderHttpGetIn">
+    <wsdl:part name="parentFolderId" type="s:string" />
+    <wsdl:part name="deleteFolderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderHttpGetIn">
+    <wsdl:part name="folderType" type="s:string" />
+    <wsdl:part name="strFolderName" type="s:string" />
+    <wsdl:part name="strParentFolderUUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderHttpGetOut">
+    <wsdl:part name="Body" element="tns:folder" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesHttpGetIn">
+    <wsdl:part name="folderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFolderAttribute" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementHttpGetIn">
+    <wsdl:part name="sourceFolderId" type="s:string" />
+    <wsdl:part name="targetFolderId" type="s:string" />
+    <wsdl:part name="movingElementId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementHttpGetOut">
+    <wsdl:part name="Body" element="tns:FolderServiceResult" />
+  </wsdl:message>
+  <wsdl:message name="GetContentRootFolderIdHttpPostIn" />
+  <wsdl:message name="GetContentRootFolderIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderHttpPostIn">
+    <wsdl:part name="folderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderHttpPostOut">
+    <wsdl:part name="Body" element="tns:folder" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderHttpPostIn">
+    <wsdl:part name="parentFolderId" type="s:string" />
+    <wsdl:part name="deleteFolderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLocationFolderHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderHttpPostIn">
+    <wsdl:part name="folderType" type="s:string" />
+    <wsdl:part name="strFolderName" type="s:string" />
+    <wsdl:part name="strParentFolderUUID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewFolderHttpPostOut">
+    <wsdl:part name="Body" element="tns:folder" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesHttpPostIn">
+    <wsdl:part name="folderId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoadFolderAttributesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfFolderAttribute" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementHttpPostIn">
+    <wsdl:part name="sourceFolderId" type="s:string" />
+    <wsdl:part name="targetFolderId" type="s:string" />
+    <wsdl:part name="movingElementId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MoveFolderElementHttpPostOut">
+    <wsdl:part name="Body" element="tns:FolderServiceResult" />
+  </wsdl:message>
+  <wsdl:portType name="FolderServiceSoap">
+    <wsdl:operation name="GetContentRootFolderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the id of the root content root folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetContentRootFolderIdSoapIn" />
+      <wsdl:output message="tns:GetContentRootFolderIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditFolderNode">
+      <wsdl:input message="tns:EditFolderNodeSoapIn" />
+      <wsdl:output message="tns:EditFolderNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Loads a folder.</wsdl:documentation>
+      <wsdl:input message="tns:LoadFolderSoapIn" />
+      <wsdl:output message="tns:LoadFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves a folder. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:SaveFolderSoapIn" />
+      <wsdl:output message="tns:SaveFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a folder. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteFolderSoapIn" />
+      <wsdl:output message="tns:DeleteFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a location folder. This method differs from DeleteFolder in that it requires a parent id as input and it enforces deletion rules. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteLocationFolderSoapIn" />
+      <wsdl:output message="tns:DeleteLocationFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new folder.</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewFolderSoapIn" />
+      <wsdl:output message="tns:CreateNewFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Loads the folder attributes belonging to a particular folder.</wsdl:documentation>
+      <wsdl:input message="tns:LoadFolderAttributesSoapIn" />
+      <wsdl:output message="tns:LoadFolderAttributesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolderAttribute">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves a folder attribute. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:SaveFolderAttributeSoapIn" />
+      <wsdl:output message="tns:SaveFolderAttributeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolderAttribute">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a folder attribute. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteFolderAttributeSoapIn" />
+      <wsdl:output message="tns:DeleteFolderAttributeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolderElement">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves a folder element. (1 == success.)</wsdl:documentation>
+      <wsdl:input message="tns:SaveFolderElementSoapIn" />
+      <wsdl:output message="tns:SaveFolderElementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Moves a folder element.</wsdl:documentation>
+      <wsdl:input message="tns:MoveFolderElementSoapIn" />
+      <wsdl:output message="tns:MoveFolderElementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolderElement">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a folder element.  (Note: only the relationship is deleted, not the element itself). (1==success)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteFolderElementSoapIn" />
+      <wsdl:output message="tns:DeleteFolderElementSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FolderServiceHttpGet">
+    <wsdl:operation name="GetContentRootFolderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the id of the root content root folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetContentRootFolderIdHttpGetIn" />
+      <wsdl:output message="tns:GetContentRootFolderIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Loads a folder.</wsdl:documentation>
+      <wsdl:input message="tns:LoadFolderHttpGetIn" />
+      <wsdl:output message="tns:LoadFolderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a location folder. This method differs from DeleteFolder in that it requires a parent id as input and it enforces deletion rules. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteLocationFolderHttpGetIn" />
+      <wsdl:output message="tns:DeleteLocationFolderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new folder.</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewFolderHttpGetIn" />
+      <wsdl:output message="tns:CreateNewFolderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Loads the folder attributes belonging to a particular folder.</wsdl:documentation>
+      <wsdl:input message="tns:LoadFolderAttributesHttpGetIn" />
+      <wsdl:output message="tns:LoadFolderAttributesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Moves a folder element.</wsdl:documentation>
+      <wsdl:input message="tns:MoveFolderElementHttpGetIn" />
+      <wsdl:output message="tns:MoveFolderElementHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="FolderServiceHttpPost">
+    <wsdl:operation name="GetContentRootFolderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets the id of the root content root folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetContentRootFolderIdHttpPostIn" />
+      <wsdl:output message="tns:GetContentRootFolderIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Loads a folder.</wsdl:documentation>
+      <wsdl:input message="tns:LoadFolderHttpPostIn" />
+      <wsdl:output message="tns:LoadFolderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a location folder. This method differs from DeleteFolder in that it requires a parent id as input and it enforces deletion rules. (1 == success)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteLocationFolderHttpPostIn" />
+      <wsdl:output message="tns:DeleteLocationFolderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a new folder.</wsdl:documentation>
+      <wsdl:input message="tns:CreateNewFolderHttpPostIn" />
+      <wsdl:output message="tns:CreateNewFolderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Loads the folder attributes belonging to a particular folder.</wsdl:documentation>
+      <wsdl:input message="tns:LoadFolderAttributesHttpPostIn" />
+      <wsdl:output message="tns:LoadFolderAttributesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Moves a folder element.</wsdl:documentation>
+      <wsdl:input message="tns:MoveFolderElementHttpPostIn" />
+      <wsdl:output message="tns:MoveFolderElementHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FolderServiceSoap" type="tns:FolderServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetContentRootFolderId">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/GetContentRootFolderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetContentRootFolderIduser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditFolderNode">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/EditFolderNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EditFolderNodeuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/LoadFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoadFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolder">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/SaveFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteLocationFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteLocationFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/CreateNewFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateNewFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/LoadFolderAttributes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoadFolderAttributesuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolderAttribute">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/SaveFolderAttribute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveFolderAttributeuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolderAttribute">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteFolderAttribute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteFolderAttributeuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolderElement">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/SaveFolderElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveFolderElementuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/MoveFolderElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:MoveFolderElementuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolderElement">
+      <soap:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteFolderElement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteFolderElementuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FolderServiceSoap12" type="tns:FolderServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetContentRootFolderId">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/GetContentRootFolderId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetContentRootFolderIduser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditFolderNode">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/EditFolderNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:EditFolderNodeuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/LoadFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoadFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolder">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/SaveFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteLocationFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteLocationFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/CreateNewFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateNewFolderuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/LoadFolderAttributes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoadFolderAttributesuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolderAttribute">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/SaveFolderAttribute" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveFolderAttributeuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolderAttribute">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteFolderAttribute" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteFolderAttributeuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFolderElement">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/SaveFolderElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveFolderElementuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/MoveFolderElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:MoveFolderElementuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolderElement">
+      <soap12:operation soapAction="http://www.prometric.com/webservices/intelitest/DeleteFolderElement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteFolderElementuser" part="user" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FolderServiceHttpGet" type="tns:FolderServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetContentRootFolderId">
+      <http:operation location="/GetContentRootFolderId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <http:operation location="/LoadFolder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <http:operation location="/DeleteLocationFolder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <http:operation location="/CreateNewFolder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <http:operation location="/LoadFolderAttributes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <http:operation location="/MoveFolderElement" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FolderServiceHttpPost" type="tns:FolderServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetContentRootFolderId">
+      <http:operation location="/GetContentRootFolderId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolder">
+      <http:operation location="/LoadFolder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationFolder">
+      <http:operation location="/DeleteLocationFolder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewFolder">
+      <http:operation location="/CreateNewFolder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadFolderAttributes">
+      <http:operation location="/LoadFolderAttributes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveFolderElement">
+      <http:operation location="/MoveFolderElement" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FolderService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service for folder management.</wsdl:documentation>
+    <wsdl:port name="FolderServiceSoap" binding="tns:FolderServiceSoap">
+      <soap:address location="http://bil-itest2-app.prometric.qc2/IntelitestWS/WebServices/FolderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FolderServiceSoap12" binding="tns:FolderServiceSoap12">
+      <soap12:address location="http://bil-itest2-app.prometric.qc2/IntelitestWS/WebServices/FolderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FolderServiceHttpGet" binding="tns:FolderServiceHttpGet">
+      <http:address location="http://bil-itest2-app.prometric.qc2/IntelitestWS/WebServices/FolderService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FolderServiceHttpPost" binding="tns:FolderServiceHttpPost">
+      <http:address location="http://bil-itest2-app.prometric.qc2/IntelitestWS/WebServices/FolderService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

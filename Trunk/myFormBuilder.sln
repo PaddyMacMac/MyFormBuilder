@@ -1,0 +1,112 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data Access Layer", "1. Data Access Layer", "{BA7D3C51-068D-4A85-BE00-EC32451E10FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Unit Tests", "0. Unit Tests", "{7EB1C393-EAE3-4964-AD3E-F6CA06AADB78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Business Logic Layer", "2. Business Logic Layer", "{61CD2259-9711-4574-9717-B6820DEE3B68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Service Layer", "3. Service Layer", "{4BF31DF7-37EC-43F8-8E3D-820ACDF11F34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Presentation Layer", "4. Presentation Layer", "{390677AB-0512-4288-9AE3-8086C4A8F043}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. User Interface Layer", "5. User Interface Layer", "{427BFA93-6879-44FC-9948-FC5291F109D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.DAL", "myFormBuilder.DAL\myFormBuilder.DAL.csproj", "{B780717C-4CAF-4CDB-837E-A5533E79158B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.Model", "myFormBuilder.Model\myFormBuilder.Model.csproj", "{61BBD1DA-903F-4F48-B4E2-DACF6D207607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.Service", "myFormBuilder.Service\myFormBuilder.Service.csproj", "{EC3BDB55-4FE6-433A-9E0D-0A62D67CB9FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.Presenter", "myFormBuilder.Presenter\myFormBuilder.Presenter.csproj", "{2C2A5C5F-D2C3-4AB8-9580-B3291E301651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.View", "myFormBuilder.View\myFormBuilder.View.csproj", "{89CF5136-AB0A-49CF-B6CA-C8F1057E472D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.WebUI", "myFormBuilder.WebUI\myFormBuilder.WebUI.csproj", "{4C45FA1D-C9A2-4BE3-8FE7-E3580E6C552A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myFormBuilder.WindowsUI", "myFormBuilder.WindowsUI\myFormBuilder.WindowsUI.csproj", "{914DDF82-B7BB-420B-9949-1ABC0A3080D2}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://eub-tfs-01:8080/tfs/tds_dundalk
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = myFormBuilder.DAL\\myFormBuilder.DAL.csproj
+		SccProjectTopLevelParentUniqueName1 = myFormBuilder.sln
+		SccProjectName1 = myFormBuilder.DAL
+		SccLocalPath1 = myFormBuilder.DAL
+		SccProjectUniqueName2 = myFormBuilder.Model\\myFormBuilder.Model.csproj
+		SccProjectTopLevelParentUniqueName2 = myFormBuilder.sln
+		SccProjectName2 = myFormBuilder.Model
+		SccLocalPath2 = myFormBuilder.Model
+		SccProjectUniqueName3 = myFormBuilder.Service\\myFormBuilder.Service.csproj
+		SccProjectTopLevelParentUniqueName3 = myFormBuilder.sln
+		SccProjectName3 = myFormBuilder.Service
+		SccLocalPath3 = myFormBuilder.Service
+		SccProjectUniqueName4 = myFormBuilder.Presenter\\myFormBuilder.Presenter.csproj
+		SccProjectTopLevelParentUniqueName4 = myFormBuilder.sln
+		SccProjectName4 = myFormBuilder.Presenter
+		SccLocalPath4 = myFormBuilder.Presenter
+		SccProjectUniqueName5 = myFormBuilder.View\\myFormBuilder.View.csproj
+		SccProjectTopLevelParentUniqueName5 = myFormBuilder.sln
+		SccProjectName5 = myFormBuilder.View
+		SccLocalPath5 = myFormBuilder.View
+		SccProjectUniqueName6 = myFormBuilder.WebUI\\myFormBuilder.WebUI.csproj
+		SccProjectTopLevelParentUniqueName6 = myFormBuilder.sln
+		SccProjectName6 = myFormBuilder.WebUI
+		SccLocalPath6 = myFormBuilder.WebUI
+		SccProjectUniqueName7 = myFormBuilder.WindowsUI\\myFormBuilder.WindowsUI.csproj
+		SccProjectTopLevelParentUniqueName7 = myFormBuilder.sln
+		SccProjectName7 = myFormBuilder.WindowsUI
+		SccLocalPath7 = myFormBuilder.WindowsUI
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B780717C-4CAF-4CDB-837E-A5533E79158B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B780717C-4CAF-4CDB-837E-A5533E79158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B780717C-4CAF-4CDB-837E-A5533E79158B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B780717C-4CAF-4CDB-837E-A5533E79158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B780717C-4CAF-4CDB-837E-A5533E79158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61BBD1DA-903F-4F48-B4E2-DACF6D207607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BBD1DA-903F-4F48-B4E2-DACF6D207607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BBD1DA-903F-4F48-B4E2-DACF6D207607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BBD1DA-903F-4F48-B4E2-DACF6D207607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC3BDB55-4FE6-433A-9E0D-0A62D67CB9FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3BDB55-4FE6-433A-9E0D-0A62D67CB9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3BDB55-4FE6-433A-9E0D-0A62D67CB9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3BDB55-4FE6-433A-9E0D-0A62D67CB9FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C2A5C5F-D2C3-4AB8-9580-B3291E301651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C2A5C5F-D2C3-4AB8-9580-B3291E301651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C2A5C5F-D2C3-4AB8-9580-B3291E301651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C2A5C5F-D2C3-4AB8-9580-B3291E301651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89CF5136-AB0A-49CF-B6CA-C8F1057E472D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CF5136-AB0A-49CF-B6CA-C8F1057E472D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CF5136-AB0A-49CF-B6CA-C8F1057E472D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CF5136-AB0A-49CF-B6CA-C8F1057E472D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C45FA1D-C9A2-4BE3-8FE7-E3580E6C552A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C45FA1D-C9A2-4BE3-8FE7-E3580E6C552A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C45FA1D-C9A2-4BE3-8FE7-E3580E6C552A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C45FA1D-C9A2-4BE3-8FE7-E3580E6C552A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914DDF82-B7BB-420B-9949-1ABC0A3080D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914DDF82-B7BB-420B-9949-1ABC0A3080D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914DDF82-B7BB-420B-9949-1ABC0A3080D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914DDF82-B7BB-420B-9949-1ABC0A3080D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B780717C-4CAF-4CDB-837E-A5533E79158B} = {BA7D3C51-068D-4A85-BE00-EC32451E10FA}
+		{61BBD1DA-903F-4F48-B4E2-DACF6D207607} = {61CD2259-9711-4574-9717-B6820DEE3B68}
+		{EC3BDB55-4FE6-433A-9E0D-0A62D67CB9FD} = {4BF31DF7-37EC-43F8-8E3D-820ACDF11F34}
+		{2C2A5C5F-D2C3-4AB8-9580-B3291E301651} = {390677AB-0512-4288-9AE3-8086C4A8F043}
+		{89CF5136-AB0A-49CF-B6CA-C8F1057E472D} = {390677AB-0512-4288-9AE3-8086C4A8F043}
+		{4C45FA1D-C9A2-4BE3-8FE7-E3580E6C552A} = {427BFA93-6879-44FC-9948-FC5291F109D9}
+		{914DDF82-B7BB-420B-9949-1ABC0A3080D2} = {427BFA93-6879-44FC-9948-FC5291F109D9}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+C:\MyFormBuilder\Trunk\myFormBuilder.Model\bin\Debug\myFormBuilder.Model.dll.config
+C:\MyFormBuilder\Trunk\myFormBuilder.Model\bin\Debug\myFormBuilder.Model.dll
+C:\MyFormBuilder\Trunk\myFormBuilder.Model\bin\Debug\myFormBuilder.Model.pdb
+C:\MyFormBuilder\Trunk\myFormBuilder.Model\obj\Debug\myFormBuilder.Model.csprojResolveAssemblyReference.cache
+C:\MyFormBuilder\Trunk\myFormBuilder.Model\obj\Debug\myFormBuilder.Model.dll
+C:\MyFormBuilder\Trunk\myFormBuilder.Model\obj\Debug\myFormBuilder.Model.pdb
